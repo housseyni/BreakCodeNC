@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Breaker - Leaderboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-900 text-white min-h-screen">
+    <header class="bg-gray-800 p-4 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+                <h1 class="text-2xl font-bold">Code Breaker - Leaderboard</h1>
+            </div>
+            <nav>
+                <ul class="flex space-x-6">
+                    <li>
+                        <a href="/" class="hover:text-yellow-500 transition-colors">
+                            Accueil
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/game" class="hover:text-yellow-500 transition-colors">
+                            Jouer
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/leaderboard.html" class="hover:text-yellow-500 transition-colors">
+                            Scores
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/presentation.html" class="hover:text-yellow-500 transition-colors flex items-center gap-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                            Présentation
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/uml-diagram.html" class="hover:text-yellow-500 transition-colors flex items-center gap-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
+                            </svg>
+                            UML
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-4">
+        <div class="max-w-2xl mx-auto">
+            <div class="bg-gray-800 rounded-lg shadow-lg p-6">
+                <div class="flex items-center gap-3 mb-6">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                    </svg>
+                    <h2 class="text-2xl font-bold">Tableau des scores</h2>
+                </div>
+
+                <div id="loading" class="text-center py-8">
+                    <div class="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-yellow-500 border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"></div>
+                    <p class="mt-2 text-gray-400">Chargement des scores...</p>
+                </div>
+
+                <div id="no-scores" class="text-center py-8 hidden">
+                    <p class="text-gray-400">Aucun score enregistré pour le moment.</p>
+                    <p class="mt-2">Jouez une partie pour apparaître ici!</p>
+                </div>
+
+                <div id="scores-container" class="hidden">
+                    <div class="flex justify-end mb-4">
+                        <div class="flex gap-2">
+                            <button
+                                id="sort-score"
+                                class="flex items-center gap-1 px-3 py-1 rounded bg-yellow-600"
+                            >
+                                Score
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
+                                </svg>
+                            </button>
+                            <button
+                                id="sort-date"
+                                class="flex items-center gap-1 px-3 py-1 rounded bg-gray-700"
+                            >
+                                Date
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4 -4m-4 4l-4-4" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead>
+                                <tr class="border-b border-gray-700">
+                                    <th class="px-4 py-2 text-left">Rang</th>
+                                    <th class="px-4 py-2 text-left">Joueur</th>
+                                    <th class="px-4 py-2 text-right">Score</th>
+                                    <th class="px-4 py-2 text-right">Date</th>
+                                </tr>
+                            </thead>
+                            <tbody id="scores-table">
+                                <!-- Les scores seront insérés ici par JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Éléments DOM
+            const loadingEl = document.getElementById('loading');
+            const noScoresEl = document.getElementById('no-scores');
+            const scoresContainerEl = document.getElementById('scores-container');
+            const scoresTableEl = document.getElementById('scores-table');
+            const sortScoreBtn = document.getElementById('sort-score');
+            const sortDateBtn = document.getElementById('sort-date');
+            
+            // État de tri
+            let sortBy = 'score';
+            let sortDirection = 'desc';
+            
+            // Fonction pour charger les scores
+            async function loadScores() {
+                try {
+                    // Essayer de charger depuis localStorage
+                    let localScores = [];
+                    try {
+                        const localData = localStorage.getItem('scores');
+                        if (localData) {
+                            localScores = JSON.parse(localData);
+                        }
+                    } catch (error) {
+                        console.error('Erreur lors du chargement des scores depuis localStorage:', error);
+                    }
+                    
+                    // Essayer de charger depuis le fichier
+                    let fileScores = [];
+                    try {
+                        const response = await fetch('/scores-data.json');
+                        if (response.ok) {
+                            fileScores = await response.json();
+                        }
+                    } catch (error) {
+                        console.error('Erreur lors du chargement des scores depuis le fichier:', error);
+                    }
+                    
+                    // Fusionner les scores, en gardant le meilleur score pour chaque joueur
+                    const mergedScores = [...localScores];
+                    
+                    fileScores.forEach(fileScore => {
+                        const existingIndex = mergedScores.findIndex(s => s.name === fileScore.name);
+                        if (existingIndex === -1) {
+                            // Le joueur n'existe pas dans localStorage, l'ajouter
+                            mergedScores.push(fileScore);
+                        } else if (mergedScores[existingIndex].score < fileScore.score) {
+                            // Mettre à jour si le score du fichier est meilleur
+                            mergedScores[existingIndex] = fileScore;
+                        }
+                    });
+                    
+                    // Sauvegarder les scores fusionnés dans localStorage
+                    localStorage.setItem('scores', JSON.stringify(mergedScores));
+                    
+                    // Afficher les scores ou le message "pas de scores"
+                    if (mergedScores.length === 0) {
+                        loadingEl.classList.add('hidden');
+                        noScoresEl.classList.remove('hidden');
+                    } else {
+                        displayScores(mergedScores);
+                        loadingEl.classList.add('hidden');
+                        scoresContainerEl.classList.remove('hidden');
+                    }
+                } catch (error) {
+                    console.error('Erreur lors du chargement des scores:', error);
+                    loadingEl.textContent = 'Erreur lors du chargement des scores.';
+                }
+            }
+            
+            // Fonction pour afficher les scores
+            function displayScores(scores) {
+                // Trier les scores
+                const sortedScores = sortScores(scores);
+                
+                // Vider le tableau
+                scoresTableEl.innerHTML = '';
+                
+                // Ajouter chaque score au tableau
+                sortedScores.forEach((score, index) => {
+                    const row = document.createElement('tr');
+                    row.className = `border-b border-gray-700 ${index === 0 ? 'bg-yellow-900/20' : ''}`;
+                    
+                    const rankCell = document.createElement('td');
+                    rankCell.className = 'px-4 py-3';
+                    
+                    if (index === 0) {
+                        rankCell.innerHTML = `
+                            <span class="inline-flex items-center justify-center w-6 h-6 bg-yellow-600 rounded-full text-sm font-bold">
+                                1
+                            </span>
+                        `;
+                    } else {
+                        rankCell.innerHTML = `
+                            <span class="inline-flex items-center justify-center w-6 h-6 bg-gray-700 rounded-full text-sm">
+                                ${index + 1}
+                            </span>
+                        `;
+                    }
+                    
+                    const nameCell = document.createElement('td');
+                    nameCell.className = 'px-4 py-3 font-medium';
+                    nameCell.textContent = score.name;
+                    
+                    const scoreCell = document.createElement('td');
+                    scoreCell.className = 'px-4 py-3 text-right font-mono';
+                    scoreCell.textContent = score.score;
+                    
+                    const dateCell = document.createElement('td');
+                    dateCell.className = 'px-4 py-3 text-right text-gray-400 text-sm';
+                    dateCell.textContent = formatDate(score.date);
+                    
+                    row.appendChild(rankCell);
+                    row.appendChild(nameCell);
+                    row.appendChild(scoreCell);
+                    row.appendChild(dateCell);
+                    
+                    scoresTableEl.appendChild(row);
+                });
+            }
+            
+            // Fonction pour trier les scores
+            function sortScores(scores) {
+                return [...scores].sort((a, b) => {
+                    if (sortBy === 'score') {
+                        return sortDirection === 'asc' ? a.score - b.score : b.score - a.score;
+                    } else {
+                        return sortDirection === 'asc'
+                            ? new Date(a.date).getTime() - new Date(b.date).getTime()
+                            : new Date(b.date).getTime() - new Date(a.date).getTime();
+                    }
+                });
+            }
+            
+            // Fonction pour formater la date
+            function formatDate(dateString) {
+                const date = new Date(dateString);
+                return date.toLocaleDateString() + ' ' + date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            }
+            
+            // Gestionnaires d'événements pour les boutons de tri
+            sortScoreBtn.addEventListener('click', function() {
+                if (sortBy === 'score') {
+                    sortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
+                } else {
+                    sortBy = 'score';
+                    sortDirection = 'desc';
+                    
+                    // Mettre à jour l'apparence des boutons
+                    sortScoreBtn.classList.add('bg-yellow-600');
+                    sortScoreBtn.classList.remove('bg-gray-700');
+                    sortDateBtn.classList.add('bg-gray-700');
+                    sortDateBtn.classList.remove('bg-yellow-600');
+                    
+                    // Afficher/masquer les icônes de tri
+                    sortScoreBtn.querySelector('svg').classList.remove('hidden');
+                    sortDateBtn.querySelector('svg').classList.add('hidden');
+                }
+                
+                // Mettre à jour l'icône de direction
+                sortScoreBtn.querySelector('svg').classList.toggle('rotate-180', sortDirection === 'asc');
+                
+                // Recharger les scores
+                loadScores();
+            });
+            
+            sortDateBtn.addEventListener('click', function() {
+                if (sortBy === 'date') {
+                    sortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
+                } else {
+                    sortBy = 'date';
+                    sortDirection = 'desc';
+                    
+                    // Mettre à jour l'apparence des boutons
+                    sortDateBtn.classList.add('bg-yellow-600');
+                    sortDateBtn.classList.remove('bg-gray-700');
+                    sortScoreBtn.classList.add('bg-gray-700');
+                    sortScoreBtn.classList.remove('bg-yellow-600');
+                    
+                    // Afficher/masquer les icônes de tri
+                    sortDateBtn.querySelector('svg').classList.remove('hidden');
+                    sortScoreBtn.querySelector('svg').classList.add('hidden');
+                }
+                
+                // Mettre à jour l'icône de direction
+                sortDateBtn.querySelector('svg').classList.toggle('rotate-180', sortDirection === 'asc');
+                
+                // Recharger les scores
+                loadScores();
+            });
+            
+            // Charger les scores au chargement de la page
+            loadScores();
+            
+            // Recharger les scores toutes les 30 secondes
+            setInterval(loadScores, 30000);
+        });
+    </script>
+</body>
+</html>

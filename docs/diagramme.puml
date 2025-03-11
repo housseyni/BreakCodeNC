@@ -1,0 +1,110 @@
+@startuml Code Breaker - Diagramme de classes
+
+' Définition des classes principales
+class Game {
+  -secretCode: number[]
+  -attempts: Attempt[]
+  -player: Player
+  -gameOver: boolean
+  -win: boolean
+  +generateSecretCode(): number[]
+  +submitGuess(guess: number[]): Feedback
+  +resetGame(): void
+  +saveScore(): void
+}
+
+class Player {
+  -name: string
+  -bestScore: number
+  +getName(): string
+  +updateScore(score: number): boolean
+}
+
+class Attempt {
+  -guess: number[]
+  -feedback: Feedback
+  +getGuess(): number[]
+  +getFeedback(): Feedback
+}
+
+class Feedback {
+  -positions: string[]
+  +isWinning(): boolean
+  +getPositions(): string[]
+}
+
+class ScoreManager {
+  -scores: Score[]
+  +addScore(player: string, score: number): void
+  +getScores(): Score[]
+  +clearScores(): void
+  +saveToFile(): void
+  +loadFromFile(): void
+}
+
+class Score {
+  -name: string
+  -score: number
+  -date: Date
+}
+
+class AudioManager {
+  -playing: boolean
+  -worker: Worker
+  +toggleMusic(): void
+  +stopMusic(): void
+}
+
+' Définition des interfaces
+interface IGameView {
+  +displayGame(game: Game): void
+  +displayFeedback(feedback: Feedback): void
+  +displayHistory(attempts: Attempt[]): void
+  +displayGameOver(win: boolean, secretCode: number[]): void
+}
+
+class ConsoleView {
+  +displayColoredFeedback(feedback: Feedback): void
+  +displayBanner(): void
+  +displayInstructions(): void
+}
+
+class WebView {
+  +renderGameComponent(): JSX
+  +renderHistoryComponent(): JSX
+  +renderScoreComponent(): JSX
+}
+
+' Relations entre les classes
+Game "1" *-- "1" Player : has
+Game "1" *-- "*" Attempt : contains
+Game "1" *-- "1" AudioManager : uses
+Attempt "1" *-- "1" Feedback : has
+ScoreManager "1" *-- "*" Score : manages
+ConsoleView ..|> IGameView : implements
+WebView ..|> IGameView : implements
+Game "1" --> "1" ScoreManager : uses
+Game "1" --> "1" IGameView : displays through
+
+' Définition des notes
+note bottom of Game
+  La classe centrale qui gère la logique du jeu
+  et coordonne les différentes composantes
+end note
+
+note right of AudioManager
+  Gère la musique de fond dans un thread séparé
+  (programmation concurrente)
+end note
+
+note right of ConsoleView
+  Implémentation pour la version terminal
+  (programmation procédurale)
+end note
+
+note right of WebView
+  Implémentation pour la version web
+  (programmation événementielle)
+end note
+
+@enduml

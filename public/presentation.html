@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Présentation - Code Breaker</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    
+    header {
+      background-color: #1a1a2e;
+      color: white;
+      padding: 1rem;
+    }
+    
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .navbar-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
+    
+    .navbar-nav {
+      display: flex;
+      list-style: none;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .navbar-nav a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+    
+    .navbar-nav a:hover {
+      color: #ffc107;
+    }
+    
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem;
+      background-color: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 5px;
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    h1 {
+      color: #1a1a2e;
+      border-bottom: 2px solid #e6e6e6;
+      padding-bottom: 0.5rem;
+    }
+    
+    h2 {
+      color: #16213e;
+      margin-top: 2rem;
+    }
+    
+    h3 {
+      color: #0f3460;
+    }
+    
+    .abstract {
+      background-color: #f8f9fa;
+      padding: 1rem;
+      border-left: 4px solid #0f3460;
+      margin: 1.5rem 0;
+    }
+    
+    .section {
+      margin-bottom: 2rem;
+    }
+    
+    .code {
+      background-color: #f5f5f5;
+      padding: 1rem;
+      border-radius: 5px;
+      font-family: monospace;
+      overflow-x: auto;
+      margin: 1rem 0;
+    }
+    
+    ul, ol {
+      padding-left: 2rem;
+    }
+    
+    li {
+      margin-bottom: 0.5rem;
+    }
+    
+    .note {
+      background-color: #fff3cd;
+      border-left: 4px solid #ffc107;
+      padding: 1rem;
+      margin: 1rem 0;
+    }
+    
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid #e6e6e6;
+    }
+    
+    .nav-button {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background-color: #0f3460;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+    
+    .nav-button:hover {
+      background-color: #16213e;
+    }
+    
+    .toc {
+      background-color: #f8f9fa;
+      padding: 1rem;
+      border-radius: 5px;
+      margin-bottom: 2rem;
+    }
+    
+    .toc ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    
+    .toc ul ul {
+      padding-left: 1.5rem;
+    }
+    
+    .toc a {
+      color: #0f3460;
+      text-decoration: none;
+    }
+    
+    .toc a:hover {
+      text-decoration: underline;
+    }
+    
+    .back-to-app {
+      display: block;
+      text-align: center;
+      margin-top: 1rem;
+      margin-bottom: 2rem;
+      color: #0f3460;
+      text-decoration: none;
+    }
+    
+    .back-to-app:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="navbar">
+      <div class="navbar-brand">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffc107" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+        </svg>
+        Code Breaker
+      </div>
+      <ul class="navbar-nav">
+        <li>
+          <a href="/">
+            Accueil
+          </a>
+        </li>
+        <li>
+          <a href="/game">
+            Jouer
+          </a>
+        </li>
+        <li>
+          <a href="/leaderboard.html">
+            Scores
+          </a>
+        </li>
+        <li>
+          <a href="/presentation.html">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+            Présentation
+          </a>
+        </li>
+        <li>
+          <a href="/uml-diagram.html">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="6" y1="3" x2="6" y2="15"></line>
+              <circle cx="18" cy="6" r="3"></circle>
+              <circle cx="6" cy="18" r="3"></circle>
+              <path d="M18 9a9 9 0 0 1-9 9"></path>
+            </svg>
+            UML
+          </a>
+        </li>
+      </ul>
+    </div>
+  </header>
+  
+  <div class="container">
+    <div class="abstract">
+      <h2>Résumé</h2>
+      <p>Ce document présente le jeu Code Breaker développé dans le cadre du cours de Paradigmes de Programmation. Le jeu implémente différents paradigmes de programmation : procédural, événementiel, concurrent et orienté objet. Ce rapport détaille les choix d'implémentation, l'architecture du projet et les différentes fonctionnalités.</p>
+    </div>
+    
+    <div class="toc">
+      <h2>Table des matières</h2>
+      <ul>
+        <li><a href="#introduction">1. Introduction</a></li>
+        <li><a href="#regles">2. Règles du jeu</a>
+          <ul>
+            <li><a href="#objectif">2.1 Objectif</a></li>
+            <li><a href="#deroulement">2.2 Déroulement</a></li>
+            <li><a href="#score">2.3 Calcul du score</a></li>
+          </ul>
+        </li>
+        <li><a href="#architecture">3. Architecture du projet</a>
+          <ul>
+            <li><a href="#structure">3.1 Structure des fichiers</a></li>
+            <li><a href="#technologies">3.2 Technologies utilisées</a></li>
+          </ul>
+        </li>
+        <li><a href="#paradigmes">4. Implémentation des paradigmes</a>
+          <ul>
+            <li><a href="#procedural">4.1 Programmation procédurale</a></li>
+            <li><a href="#evenementiel">4.2 Programmation événementielle</a></li>
+            <li><a href="#concurrent">4.3 Programmation concurrente</a></li>
+            <li><a href="#objet">4.4 Programmation orientée objet</a></li>
+          </ul>
+        </li>
+        <li><a href="#scores">5. Gestion des scores</a></li>
+        <li><a href="#interface">6. Interface utilisateur</a></li>
+        <li><a href="#difficultes">7. Difficultés rencontrées et solutions</a></li>
+        <li><a href="#ameliorations">8. Améliorations possibles</a></li>
+        <li><a href="#conclusion">9. Conclusion</a></li>
+      </ul>
+    </div>
+    
+    <div id="introduction" class="section">
+      <h2>1. Introduction</h2>
+      <p>Le projet Code Breaker est un jeu de déduction où le joueur doit deviner un code secret composé de trois chiffres. À chaque tentative, le joueur reçoit des indices visuels indiquant si les chiffres proposés sont corrects et bien placés (vert), corrects mais mal placés (orange), ou incorrects (rouge).</p>
+      <p>Ce projet a été développé pour illustrer différents paradigmes de programmation :</p>
+      <ul>
+        <li>Programmation procédurale (version console)</li>
+        <li>Programmation événementielle (interface graphique)</li>
+        <li>Programmation concurrente (musique en arrière-plan)</li>
+        <li>Programmation orientée objet (architecture globale)</li>
+      </ul>
+    </div>
+    
+    <div id="regles" class="section">
+      <h2>2. Règles du jeu</h2>
+      
+      <div id="objectif">
+        <h3>2.1 Objectif</h3>
+        <p>Le joueur doit deviner un code secret composé de trois chiffres (de 0 à 9) en un minimum d'essais.</p>
+      </div>
+      
+      <div id="deroulement">
+        <h3>2.2 Déroulement</h3>
+        <ol>
+          <li>Le joueur entre son nom</li>
+          <li>Un code secret aléatoire est généré</li>
+          <li>Le joueur propose une combinaison de trois chiffres</li>
+          <li>Le système fournit un retour visuel pour chaque chiffre :
+            <ul>
+              <li>Vert : chiffre correct et bien placé</li>
+              <li>Orange : chiffre correct mais mal placé</li>
+              <li>Rouge : chiffre incorrect</li>
+            </ul>
+          </li>
+          <li>Le joueur continue jusqu'à trouver le code ou abandonner</li>
+        </ol>
+      </div>
+      
+      <div id="score">
+        <h3>2.3 Calcul du score</h3>
+        <p>Le score est calculé selon la formule : Score = 100 - (nombre d'essais × 5), avec un minimum de 10 points.</p>
+      </div>
+    </div>
+    
+    <div id="architecture" class="section">
+      <h2>3. Architecture du projet</h2>
+      
+      <div id="structure">
+        <h3>3.1 Structure des fichiers</h3>
+        <div class="code">
+code-breaker/
+├── src/                  # Code source de l'application
+│   ├── components/       # Composants React
+│   │   ├── GamePage.tsx  # Page de jeu
+│   │   ├── ScorePage.tsx # Page des scores
+│   │   └── WelcomePage.tsx # Page d'accueil
+│   ├── terminal.js       # Version console
+│   └── ...
+├── scores/               # Stockage des scores
+└── docs/                 # Documentation
+        </div>
+      </div>
+      
+      <div id="technologies">
+        <h3>3.2 Technologies utilisées</h3>
+        <ul>
+          <li>React.js pour l'interface graphique</li>
+          <li>Node.js pour la version console</li>
+          <li>Worker Threads pour la programmation concurrente</li>
+          <li>JSON pour le stockage des scores</li>
+          <li>Tailwind CSS pour le style de l'interface</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div id="paradigmes" class="section">
+      <h2>4. Implémentation des paradigmes</h2>
+      
+      <div id="procedural">
+        <h3>4.1 Programmation procédurale</h3>
+        <p>La version console du jeu (terminal.js) est implémentée selon le paradigme procédural :</p>
+        <ul>
+          <li>Fonctions pour chaque étape du jeu</li>
+          <li>Exécution séquentielle</li>
+          <li>Variables globales pour l'état du jeu</li>
+          <li>Entrées/sorties via le terminal</li>
+        </ul>
+        
+        <div class="code">
+// Generate a random 3-digit code
+function generateSecretCode() {
+  return Array(3).fill(0).map(() => Math.floor(Math.random() * 10));
+}
+
+// Generate feedback for a guess
+function generateFeedback(guess) {
+  const feedback = ['red', 'red', 'red']; // Default all to red
+  const codeCopy = [...secretCode];
+  const guessCopy = [...guess];
+  
+  // First pass: check for correct position (green)
+  for (let i = 0; i < 3; i++) {
+    if (guessCopy[i] === codeCopy[i]) {
+      feedback[i] = 'green';
+      codeCopy[i] = -1; // Mark as used
+      guessCopy[i] = -2; // Different value to avoid confusion
+    }
+  }
+  
+  // Second pass: check for correct digit but wrong position (orange)
+  for (let i = 0; i < 3; i++) {
+    if (guessCopy[i] !== -2) { // Skip already matched digits
+      const indexInCode = codeCopy.indexOf(guessCopy[i]);
+      if (indexInCode !== -1) {
+        feedback[i] = 'orange';
+        codeCopy[indexInCode] = -1; // Mark as used
+      }
+    }
+  }
+  
+  return feedback;
+}
+        </div>
+      </div>
+      
+      <div id="evenementiel">
+        <h3>4.2 Programmation événementielle</h3>
+        <p>L'interface graphique utilise React et le paradigme événementiel :</p>
+        <ul>
+          <li>Composants réactifs qui répondent aux événements</li>
+          <li>Gestion des événements utilisateur (clic, saisie)</li>
+          <li>Mise à jour de l'interface en fonction des actions</li>
+        </ul>
+        
+        <div class="code">
+// Handle input change for each digit
+const handleInputChange = (index: number, value: string) => {
+  if (value === '' || /^[0-9]$/.test(value)) {
+    const newGuess = [...currentGuess];
+    newGuess[index] = value;
+    setCurrentGuess(newGuess);
+    
+    // Auto-focus next input
+    if (value !== '' && index < 2) {
+      const nextInput = document.getElementById(`digit-${index + 1}`);
+      if (nextInput) nextInput.focus();
+    }
+  }
+};
+
+// Handle keydown events
+const handleKeyDown = (e: React.KeyboardEvent, index: number) => {
+  // Submit with Enter if all digits are filled
+  if (e.key === 'Enter' && !currentGuess.some(digit => digit === '')) {
+    submitGuess();
+    return;
+  }
+  
+  // Handle Backspace to move to previous input
+  if (e.key === 'Backspace' && currentGuess[index] === '' && index > 0) {
+    // If current field is empty and backspace is pressed, focus previous field
+    const prevInput = document.getElementById(`digit-${index - 1}`);
+    if (prevInput) {
+      prevInput.focus();
+    }
+  }
+};
+        </div>
+      </div>
+      
+      <div id="concurrent">
+        <h3>4.3 Programmation concurrente</h3>
+        <p>La musique de fond est gérée par un thread séparé, illustrant la programmation concurrente :</p>
+        <ul>
+          <li>Utilisation de Worker Threads pour exécuter du code en parallèle</li>
+          <li>Communication entre threads via messages</li>
+          <li>Gestion des ressources partagées</li>
+        </ul>
+        
+        <div class="code">
+// Toggle background music using worker threads
+function toggleMusic() {
+  if (musicPlaying) {
+    if (musicWorker) {
+      musicWorker.postMessage('stop');
+      musicWorker = null;
+    }
+    musicPlaying = false;
+    console.log(`${colors.brightYellow}Musique arrêtée.${colors.reset}`);
+  } else {
+    try {
+      // Create a worker thread for music playback
+      musicWorker = new Worker(`
+        const { parentPort } = require('worker_threads');
+        
+        let playing = true;
+        
+        // Simulate music playback
+        const interval = setInterval(() => {
+          if (playing) {
+            // This would be where music plays
+          }
+        }, 1000);
+        
+        parentPort.on('message', (message) => {
+          if (message === 'stop') {
+            playing = false;
+            clearInterval(interval);
+            parentPort.close();
+          }
+        });
+      `, { eval: true });
+      
+      musicPlaying = true;
+      console.log(`${colors.brightYellow}Musique de fond activée.${colors.reset}`);
+    } catch (error) {
+      console.error('Impossible de démarrer la musique:', error);
+    }
+  }
+}
+        </div>
+      </div>
+      
+      <div id="objet">
+        <h3>4.4 Programmation orientée objet</h3>
+        <p>L'architecture globale du projet utilise la programmation orientée objet :</p>
+        <ul>
+          <li>Composants React encapsulant données et comportements</li>
+          <li>Séparation des responsabilités</li>
+          <li>Réutilisation du code</li>
+        </ul>
+        
+        <div class="code">
+// Composant React pour la page de jeu
+const GamePage: React.FC = () => {
+  // État local (propriétés)
+  const [secretCode, setSecretCode] = useState<number[]>([]);
+  const [currentGuess, setCurrentGuess] = useState<string[]>(['', '', '']);
+  const [attempts, setAttempts] = useState<Array<{guess: number[], feedback: string[]}>>([]);
+  const [gameOver, setGameOver] = useState(false);
+  const [win, setWin] = useState(false);
+  const [audioPlaying, setAudioPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const navigate = useNavigate();
+  
+  // Méthodes du composant
+  const generateSecretCode = () => {
+    const newCode = Array(3).fill(0).map(() => Math.floor(Math.random() * 10));
+    setSecretCode(newCode);
+    return newCode;
+  };
+  
+  const toggleAudio = () => {
+    // ...
+  };
+  
+  const submitGuess = () => {
+    // ...
+  };
+  
+  // Rendu du composant
+  return (
+    // Interface utilisateur
+  );
+};
+        </div>
+      </div>
+    </div>
+    
+    <div id="scores" class="section">
+      <h2>5. Gestion des scores</h2>
+      <p>Les scores sont stockés dans un fichier JSON avec la structure suivante :</p>
+      
+      <div class="code">
+[
+  {
+    "name": "Joueur1",
+    "score": 85,
+    "date": "2023-05-15T14:32:10.123Z"
+  },
+  {
+    "name": "Joueur2",
+    "score": 70,
+    "date": "2023-05-16T09:45:22.456Z"
+  }
+]
+      </div>
+      
+      <p>Pour chaque joueur, seul le meilleur score est conservé. Si un joueur réalise un nouveau score supérieur à son précédent record, l'ancien score est remplacé.</p>
+    </div>
+    
+    <div id="interface" class="section">
+      <h2>6. Interface utilisateur</h2>
+      
+      <h3>6.1 Version graphique</h3>
+      <p>L'interface graphique comprend trois écrans principaux :</p>
+      <ul>
+        <li>Page d'accueil : saisie du nom du joueur</li>
+        <li>Page de jeu : interface principale avec le jeu</li>
+        <li>Page des scores : tableau des meilleurs scores</li>
+      </ul>
+      
+      <h3>6.2 Version console</h3>
+      <p>La version console offre une expérience similaire mais dans un terminal :</p>
+      <ul>
+        <li>Affichage coloré des indices</li>
+        <li>Historique des tentatives</li>
+        <li>Commandes spéciales (musique, quitter)</li>
+      </ul>
+    </div>
+    
+    <div id="difficultes" class="section">
+      <h2>7. Difficultés rencontrées et solutions</h2>
+      
+      <h3>7.1 Gestion de la concurrence</h3>
+      <p>La gestion de la musique en arrière-plan a posé des défis techniques :</p>
+      <ul>
+        <li>Problème : la lecture audio dans un environnement Node.js</li>
+        <li>Solution : utilisation de Worker Threads pour simuler la lecture audio</li>
+      </ul>
+      
+      <h3>7.2 Persistance des données</h3>
+      <p>La gestion des scores entre les différentes versions du jeu :</p>
+      <ul>
+        <li>Problème : partage des scores entre version web et console</li>
+        <li>Solution : utilisation d'un fichier JSON commun</li>
+      </ul>
+    </div>
+    
+    <div id="ameliorations" class="section">
+      <h2>8. Améliorations possibles</h2>
+      <ul>
+        <li>Ajout de niveaux de difficulté (codes plus longs)</li>
+        <li>Implémentation d'un mode multijoueur</li>
+        <li>Ajout d'effets sonores pour les actions du jeu</li>
+        <li>Création d'une API REST pour la gestion des scores</li>
+        <li>Ajout d'un système d'authentification</li>
+      </ul>
+    </div>
+    
+    <div id="conclusion" class="section">
+      <h2>9. Conclusion</h2>
+      <p>Ce projet a permis d'explorer différents paradigmes de programmation à travers le développement d'un jeu simple mais complet. Chaque paradigme apporte ses avantages et ses contraintes, et leur combinaison permet de créer une application robuste et modulaire.</p>
+      <p>La programmation procédurale offre une approche directe et séquentielle, idéale pour la version console. La programmation événementielle permet de créer une interface réactive et intuitive. La programmation concurrente améliore l'expérience utilisateur en gérant plusieurs tâches simultanément. Enfin, la programmation orientée objet structure le code de manière modulaire et réutilisable.</p>
+    </div>
+    
+    <div class="nav-buttons">
+      <a href="/" class="nav-button">Retour à l'accueil</a>
+      <a href="/uml-diagram.html" class="nav-button">Voir le diagramme UML</a>
+    </div>
+  </div>
+</body>
+</html>
