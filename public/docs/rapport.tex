@@ -1,0 +1,155 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Code Breaker - Rapport},
+    pdfpagemode=FullScreen,
+}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+\title{Code Breaker - Projet Paradigmes de Programmation}
+\author{Votre Nom}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Ce document présente le jeu Code Breaker développé dans le cadre du cours de Paradigmes de Programmation. Le jeu implémente différents paradigmes de programmation : procédural, événementiel, concurrent et orienté objet. Ce rapport détaille les choix d'implémentation, l'architecture du projet et les différentes fonctionnalités.
+\end{abstract}
+
+\tableofcontents
+
+\newpage
+
+\section{Introduction}
+
+Le projet Code Breaker est un jeu de déduction où le joueur doit deviner un code secret composé de trois chiffres. À chaque tentative, le joueur reçoit des indices visuels indiquant si les chiffres proposés sont corrects et bien placés (vert), corrects mais mal placés (orange), ou incorrects (rouge).
+
+Ce projet a été développé pour illustrer différents paradigmes de programmation :
+\begin{itemize}
+    \item Programmation procédurale (version console)
+    \item Programmation événementielle (interface graphique)
+    \item Programmation concurrente (musique en arrière-plan)
+    \item Programmation orientée objet (architecture globale)
+\end{itemize}
+
+\section{Règles du jeu}
+
+\subsection{Objectif}
+Le joueur doit deviner un code secret composé de trois chiffres (de 0 à 9) en un minimum d'essais.
+
+\subsection{Déroulement}
+\begin{enumerate}
+    \item Le joueur entre son nom
+    \item Un code secret aléatoire est généré
+    \item Le joueur propose une combinaison de trois chiffres
+    \item Le système fournit un retour visuel pour chaque chiffre :
+    \begin{itemize}
+        \item Vert : chiffre correct et bien placé
+        \item Orange : chiffre correct mais mal placé
+        \item Rouge : chiffre incorrect
+    \end{itemize}
+    \item Le joueur continue jusqu'à trouver le code ou abandonner
+\end{enumerate}
+
+\subsection{Calcul du score}
+Le score est calculé selon la formule : $Score = 100 - (nombre\_d'essais \times 5)$, avec un minimum de 10 points.
+
+
+\subsection{Technologies utilisées}
+\begin{itemize}
+    \item React.js pour l'interface graphique
+    \item Node.js pour la version console
+    \item Worker Threads pour la programmation concurrente
+    \item JSON pour le stockage des scores
+    \item Tailwind CSS pour le style de l'interface
+\end{itemize}
+
+
+
+
+\section{Gestion des scores}
+
+\subsection{Structure des données}
+Les scores sont stockés dans un fichier JSON avec la structure suivante :
+\begin{lstlisting}[language=JSON, caption=Structure du fichier scores.json]
+[
+  {
+    "name": "Joueur1",
+    "score": 85,
+    "date": "2023-05-15T14:32:10.123Z"
+  },
+  {
+    "name": "Joueur2",
+    "score": 70,
+    "date": "2023-05-16T09:45:22.456Z"
+  }
+]
+\end{lstlisting}
+
+\subsection{Politique de stockage}
+Pour chaque joueur, seul le meilleur score est conservé. Si un joueur réalise un nouveau score supérieur à son précédent record, l'ancien score est remplacé.
+
+\section{Interface utilisateur}
+
+\subsection{Version graphique}
+L'interface graphique comprend trois écrans principaux :
+\begin{itemize}
+    \item Page d'accueil : saisie du nom du joueur
+    \item Page de jeu : interface principale avec le jeu
+    \item Page des scores : tableau des meilleurs scores
+\end{itemize}
+
+\subsection{Version console}
+La version console offre une expérience similaire mais dans un terminal :
+\begin{itemize}
+    \item Affichage coloré des indices
+    \item Historique des tentatives
+    \item Commandes spéciales (musique, quitter)
+\end{itemize}
+
+
+
+\section{Conclusion}
+
+Ce projet a permis d'explorer différents paradigmes de programmation à travers le développement d'un jeu simple mais complet. Chaque paradigme apporte ses avantages et ses contraintes, et leur combinaison permet de créer une application robuste et modulaire.
+
+La programmation procédurale offre une approche directe et séquentielle, idéale pour la version console. La programmation événementielle permet de créer une interface réactive et intuitive. La programmation concurrente améliore l'expérience utilisateur en gérant plusieurs tâches simultanément. Enfin, la programmation orientée objet structure le code de manière modulaire et réutilisable.
+
+\end{document}

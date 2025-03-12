@@ -1,9 +1,10 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Lock, FileText, GitBranch } from 'lucide-react';
-import GamePage from './components/GamePage';
-import ScorePage from './components/ScorePage';
-import WelcomePage from './components/WelcomePage';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Lock, FileText, GitBranch } from "lucide-react";
+import GamePage from "./components/GamePage";
+import ScorePage from "./components/ScorePage";
+import WelcomePage from "./components/WelcomePage";
+import PresentationPage from "./components/PresentationPage";
 
 function App() {
   return (
@@ -18,28 +19,43 @@ function App() {
             <nav>
               <ul className="flex space-x-6">
                 <li>
-                  <a href="/" className="hover:text-yellow-500 transition-colors">
+                  <a
+                    href="/"
+                    className="hover:text-yellow-500 transition-colors"
+                  >
                     Accueil
                   </a>
                 </li>
                 <li>
-                  <a href="/game" className="hover:text-yellow-500 transition-colors">
+                  <a
+                    href="/game"
+                    className="hover:text-yellow-500 transition-colors"
+                  >
                     Jouer
                   </a>
                 </li>
                 <li>
-                  <a href="/leaderboard.html" className="hover:text-yellow-500 transition-colors">
+                  <a
+                    href="/leaderboard.html"
+                    className="hover:text-yellow-500 transition-colors"
+                  >
                     Scores
                   </a>
                 </li>
                 <li>
-                  <a href="/presentation.html" className="hover:text-yellow-500 transition-colors flex items-center gap-1">
+                  <a
+                    href="/presentation"
+                    className="hover:text-yellow-500 transition-colors flex items-center gap-1"
+                  >
                     <FileText size={16} />
                     Présentation
                   </a>
                 </li>
                 <li>
-                  <a href="/uml-diagram-simple.html" className="hover:text-yellow-500 transition-colors flex items-center gap-1">
+                  <a
+                    href="/uml-diagram.html"
+                    className="hover:text-yellow-500 transition-colors flex items-center gap-1"
+                  >
                     <GitBranch size={16} />
                     UML
                   </a>
@@ -48,12 +64,13 @@ function App() {
             </nav>
           </div>
         </header>
-        
+
         <main className="container mx-auto p-4">
           <Routes>
             <Route path="/" element={<WelcomePage />} />
             <Route path="/game" element={<GamePage />} />
             <Route path="/scores" element={<ScorePage />} />
+            <Route path="/presentation" element={<PresentationPage />} />
           </Routes>
         </main>
       </div>
