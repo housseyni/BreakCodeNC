@@ -268,13 +268,13 @@ const GamePage: React.FC = () => {
           </p>
         ) : (
           <div className="space-y-2 max-h-[400px] overflow-y-auto">
-            {attempts.map((attempt, attemptIndex) => (
+            {[...attempts].reverse().map((attempt, attemptIndex) => (
               <div
                 key={attemptIndex}
                 className="flex items-center gap-4 p-2 bg-gray-700/50 rounded-md"
               >
                 <span className="text-gray-400 w-6 text-right">
-                  #{attemptIndex + 1}
+                  #{attempts.length - attemptIndex}
                 </span>
                 <div className="flex gap-2">
                   {attempt.guess.map((digit, digitIndex) => (
