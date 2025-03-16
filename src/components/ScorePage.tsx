@@ -19,6 +19,7 @@ const ScorePage: React.FC = () => {
     const loadScores = async () => {
       setLoading(true);
       
+      
       try {
         // First try to load from localStorage
         const localScores = JSON.parse(localStorage.getItem('scores') || '[]');

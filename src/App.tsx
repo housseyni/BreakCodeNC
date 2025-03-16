@@ -5,6 +5,7 @@ import GamePage from "./components/GamePage";
 import ScorePage from "./components/ScorePage";
 import WelcomePage from "./components/WelcomePage";
 import PresentationPage from "./components/PresentationPage";
+import UMLDiagramPage from "./components/UMLDiagramPage";
 
 function App() {
   return (
@@ -53,7 +54,7 @@ function App() {
                 </li>
                 <li>
                   <a
-                    href="/uml-diagram.html"
+                    href="/uml"
                     className="hover:text-yellow-500 transition-colors flex items-center gap-1"
                   >
                     <GitBranch size={16} />
@@ -71,6 +72,7 @@ function App() {
             <Route path="/game" element={<GamePage />} />
             <Route path="/scores" element={<ScorePage />} />
             <Route path="/presentation" element={<PresentationPage />} />
+            <Route path="/uml" element={<UMLDiagramPage />} />
           </Routes>
         </main>
       </div>
