@@ -4,7 +4,7 @@
 
 ### Version graphique (Web)
 
-1. Lancez l'application avec `npm run dev`
+1. Lancez l'application avec `npm run dev` ( si vous n'avez pas npm installez les dépendances avec 'npm install')
 2. Entrez votre nom sur la page d'accueil
 3. Devinez le code secret de 3 chiffres
 4. Utilisez les indices colorés pour affiner vos propositions
